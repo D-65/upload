@@ -1,5 +1,6 @@
 import streamlit as st
 import webbrowser
+import pandas as pd
 
 st.title('-----テストページ-----')
 st.subheader('内見形式を選択してください')
@@ -13,6 +14,23 @@ view = st.button('2D')
 if view == True:
      webbrowser.open_new_tab(uri2)
 
+#アンケート数値化
+ans_output = []
+q_nums = ['Q1','Q2','Q3','Q4','その他']
+def val(q):
+    if q == 'すごく良い':
+        ans_output.append(5)
+    elif q == '良い':
+        ans_output.append(4)
+    elif q == 'どちらとも言えない':
+        ans_output.append(3)
+    elif q == '悪い':
+        ans_output.append(2)
+    elif q == 'すごく悪い':
+        ans_output.append(1)
+    else:
+        ans_output.append(q)
+
 #アンケート
 st.write("アンケートに答える")
 q =  st.checkbox('Yes', value=False) # valueは初期状態
@@ -21,17 +39,27 @@ if q == True:
     ans = []
     q1 = st.radio("Q1",q)
     ans.append(q1)
+    val(q1)
     q2 = st.radio("Q2",q)
     ans.append(q2)
+    val(q2)
     q3 = st.radio("Q3",q)
     ans.append(q3)
+    val(q3)
     q4 = st.radio("Q4",q)
     ans.append(q4)
-    st.text_input('その他')
+    val(q4)
+    qf = st.text_input('その他')
+    ans.append(qf)
+    val(qf)
+    print(ans_output)
     
+    #アンケート送信
     send = st.button('アンケートを送信')
     if send == True:
-        
-# 選択肢
-st.selectbox('ラベル',('選択肢1', '選択肢2', '選択肢3'))
-
+        # データフレームを作成
+        df = pd.DataFrame([ans_output], columns=q_nums)
+        # CSV ファイル出力
+        df.to_csv("test.csv")
+        #結果の表示
+        df
