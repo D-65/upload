@@ -1,6 +1,7 @@
 import streamlit as st
 import webbrowser
 import pandas as pd
+import datetime
 
 st.title('-----テストページ-----')
 st.subheader('内見形式を選択してください')
@@ -52,14 +53,16 @@ if q == True:
     qf = st.text_input('その他')
     ans.append(qf)
     val(qf)
-    print(ans_output)
+    #print(ans_output)
     
     #アンケート送信
     send = st.button('アンケートを送信')
     if send == True:
         # データフレームを作成
         df = pd.DataFrame([ans_output], columns=q_nums)
+        path = '/Users/komakoma/Box/test/'
         # CSV ファイル出力
-        df.to_csv("test.csv")
-        #結果の表示
-        df
+        now = datetime.datetime.now()
+        df.to_csv('/Users/komakoma/Box/test/' + now.strftime('%Y_%m_%d_%H_%M') + '.csv',encoding='utf_8_sig')
+        #表示
+        #df
