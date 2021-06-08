@@ -61,6 +61,7 @@ if q == True:
         path = '/Users/komakoma/Box/test/'
         # CSV ファイル出力
         now = datetime.datetime.now()
-        df.to_csv('/Users/komakoma/Box/test/' + now.strftime('%Y_%m_%d_%H_%M') + '.csv',encoding='utf_8_sig')
+                    #ここのパスをbox契約後変更#
+        df.to_csv('/Users/komakoma/Box/test/answers' + now.strftime('%Y_%m_%d_%H_%M') + '.csv',encoding='utf_8_sig')
         #表示
         #df
