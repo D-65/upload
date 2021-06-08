@@ -3,18 +3,6 @@ import webbrowser
 import pandas as pd
 import datetime
 
-st.title('-----テストページ-----')
-st.subheader('内見形式を選択してください')
-uri1 = 'file:///' + 'Users/komakoma/Desktop/github/upload/test.html'
-
-# 内見方式
-view = st.button('3D')
-if view == True:
-     webbrowser.open_new_tab(uri1)
-view = st.button('2D')
-if view == True:
-     webbrowser.open_new_tab(uri2)
-
 #アンケート数値化
 ans_output = []
 q_nums = ['Q1','Q2','Q3','Q4','その他']
@@ -31,6 +19,16 @@ def val(q):
         ans_output.append(1)
     else:
         ans_output.append(q)
+
+
+st.title('Welcome to 3D room tour!!!')
+#st.subheader('内見形式を選択してください')
+url1 = 'file:///' + 'Users/komakoma/Desktop/github/upload/test.html'
+
+# 内見
+view = st.button('3Dモデルを見る')
+if view == True:
+    webbrowser.open_new_tab(url1)
 
 #アンケート
 st.write("アンケートに答える")
