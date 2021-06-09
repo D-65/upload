@@ -23,7 +23,7 @@ def val(q):
 
 st.title('Welcome to 3D room tour!!!')
 #st.subheader('内見形式を選択してください')
-url1 = 'file:///' + 'Users/komakoma/Desktop/github/upload/test.html'
+url1 = 'file:///' + 'test.html'
 
 # 内見
 view = st.button('3Dモデルを見る')
@@ -58,9 +58,8 @@ if q == True:
     if send == True:
         # データフレームを作成
         df = pd.DataFrame([ans_output], columns=q_nums)
-        path = '/Users/komakoma/Box/test/'
         # CSV ファイル出力
         now = datetime.datetime.now()
-        df.to_csv('/Users/komakoma/Box/test/' + now.strftime('%Y_%m_%d_%H_%M') + '.csv',encoding='utf_8_sig')
+        df.to_csv('answer/answers' + now.strftime('%Y_%m_%d_%H_%M') + '.csv',encoding='utf_8_sig')
         #表示
         #df
